@@ -1,0 +1,105 @@
+<mat-card>
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button mat-raised-button type="submit" color="primary"
+                    class="btn btn-success"
+                    style="border-radius: 30px;margin-right: 5px;"
+                    [disabled]="!recipeForm.valid"
+                    >Save</button>
+                    <button   mat-raised-button type="button" 
+                    color="primary"
+                    class="btn btn-danger"
+                    style="border-radius: 30px;"
+                    (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="from-group">
+                        <label for="name">Name</label>
+                        <input type="text" 
+                        id="name"
+                        formControlName="name" 
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="from-group">
+                        <label for="name">Image URL</label>
+                        <input type="text" 
+                        id="imagePath"
+                        formControlName="imagePath"
+                        #imagePath 
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <img 
+                    [src]="imagePath.value" 
+                    class="img-responsive"
+                    style="border-radius: 10px;padding: 5px;">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="from-group">
+                        <label for="description">Description </label>
+                        <textarea type="text" 
+                        id="description" 
+                        formControlName="description"
+                        class="form-control"
+                        rows="6"></textarea>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="ingredient">    
+                   <div class="row"
+                   *ngFor="let ingredientCtrl of ingredientsControls;let i =index"
+                   [formGroupName]="i"
+                   style="margin-top: 10px;"> 
+                       <div class="col-xs-8">
+                           <input type="text"
+                           class="form-control"
+                           formControlName="name">
+                       </div>
+                       <div class="col-xs-2">
+                           <input type="number"
+                           class="form-control"
+                           formControlName="amount"> 
+                       </div>
+                       <div class="row-xs-2">
+                           <button
+                           type="button" 
+                           class="btn btn-danger"
+                           style="border-radius: 50px;"
+                           (click)="onDeleteIngredient(i)"
+                           >X</button>
+                       </div>
+                   </div>
+                   <hr>
+                   <div class="row">
+                       <div class="col-xs-12">
+                           <button mat-raised-button type="button"
+                           style="border-radius: 20px;
+                           background: linear-gradient(50deg,#FF6EBF 0%,#04C8DE 100%);"
+                           (click)="onAddIngredient()">Add Ingredient</button>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</mat-card>

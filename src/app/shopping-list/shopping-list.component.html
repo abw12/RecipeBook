@@ -1,0 +1,18 @@
+<mat-card>
+<div class="row">
+    <div class="col-xs-10">
+        <!-- <app-shopping-edit
+        (ingridientAdded)="onIngridientadded($event)"></app-shopping-edit>-->
+        <app-shopping-edit></app-shopping-edit>
+        <hr>
+        <ul class="list-group">
+            <a class="list-group-item"
+             style="cursor:pointer"
+             *ngFor="let item of (ingredientsArray | async).ingredients ; let i= index"
+             (click)="onEditItem(i)">
+             {{item.name}} ({{item.amount}})
+            </a>
+        </ul>
+    </div>
+</div>
+</mat-card>

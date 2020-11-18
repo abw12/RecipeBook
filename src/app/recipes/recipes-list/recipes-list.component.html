@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-xs-6">
+        <button 
+        mat-raised-button 
+        color="primary"
+        class="btn btn-success"
+        (click)="onNewRecipe()"
+        >New Recipe</button>
+    </div>
+    <div class="col-xs-6" *ngIf="recipe.length > 0">
+      <!-- <button type="button">ApplyFilter</button>-->  
+        <input 
+        placeholder="FilterRecipeByName"
+        type="text" 
+        [(ngModel)]="filterRecipeName"
+        class="form-control">
+        
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+       
+        <!-- <app-recipes-item 
+        *ngFor="let item of recipes"
+        [recipesItem]="item"
+        (selectedItem)="onSelectedRecipe(item)"
+        ></app-recipes-item> -->
+       
+        <app-recipes-item 
+        *ngFor="let item of recipe | filter:filterRecipeName;
+        let i = index"
+        [recipesItem]="item"
+        [index]="i">
+       
+        </app-recipes-item>
+    </div>
+</div>

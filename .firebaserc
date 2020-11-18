@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ng-recipe-book-71504"
+  },
+  "targets": {
+    "ng-recipe-book-71504": {
+      "hosting": {
+        "courseProject": [
+          "ng-recipe-book-71504"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+<ng-template appPlaceHolder></ng-template>
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <!-- <div class="alert alert-danger" *ngIf="errorMsg">
+            <p>{{errorMsg}}</p>
+        </div> -->
+        
+        <!-- <app-alert [message]="errorMsg" *ngIf="errorMsg" (close)="HandleAlert()"></app-alert> -->
+       
+        <div *ngIf="isLoading" style="text-align: center;"> 
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading"> 
+            
+        <mat-card>
+            <mat-form-field appearance="outline" *ngIf="!isLoggedIn">
+                <mat-label for="name">FirstName</mat-label>
+                <input matInput type="text" 
+                id="name" 
+                class="inputfield"
+                placeholder="FirstName"
+                ngModel
+                name="FirstName"
+                required
+                />
+                <mat-error>You must enter a value</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label for="email">E-Mail</mat-label>
+                <input matInput type="email" 
+                id="email" 
+                class="inputfield"
+                placeholder="eg.example@gmail.com"
+                ngModel
+                name="email"
+                required
+                email/>
+                <mat-error>You must enter a value</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field  
+            appearance="outline" 
+            hintLabel="Min. length must be 6 Characters" 
+            >
+                <mat-label for="password">Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" 
+                id="password" 
+                class="inputfield"
+                ngModel
+                name="password"
+                minlength="6"
+                required
+                />
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                <mat-error>You must enter a value</mat-error>
+            </mat-form-field>
+            <hr>
+            <div>
+                <button 
+                mat-raised-button 
+                color="primary"
+                type="submit"
+                [disabled]="!authForm.valid"
+                >{{ isLoggedIn ? 'Login':'Sign-Up'}}
+                </button> |
+                <button  
+                mat-raised-button 
+                color="primary"
+                type="button"
+                (click)="onSwtichButtonClick()"
+                >Switch to {{ isLoggedIn ? 'Sign-Up':'Login'}}</button>
+            </div>
+        </mat-card>
+        </form>
+   
+    </div>
+</div>
