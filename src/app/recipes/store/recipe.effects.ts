@@ -14,7 +14,7 @@ export class RecipeEffects {
 recipeFetch = this.action$.pipe(
     ofType(recipeActions.FETCH_RECIPES),
     switchMap(()=>{
-        return  this.http.get<Recipes[]>("https://ng-recipe-book-71504.firebaseio.com/recipes.json");
+        return  this.http.get<Recipes[]>("you http api ");
     }),
     map(httpResponse=>{
         return httpResponse.map(recipe=>{
@@ -34,7 +34,7 @@ storeRecipe=this.action$.pipe(
     ofType(recipeActions.STORE_RECIPE,recipeActions.UPDATE_RECIPE,recipeActions.ADD_RECIPE),
     withLatestFrom(this.store.select('recipes')),   //this is a special oprator which allow us the value to merge from other observable into this observable
     switchMap(([actionData,recipesState])=>{        //this is the array destructuring syntax [] where two arguments are pass in an array,the 1paramter(actionData) is the output from the ofType(0 observable) and 2nd paramater(recipesState) is the output from withLatestForm observable which allow us to merge the values of two observable 
-        return this.http.put("https://ng-recipe-book-71504.firebaseio.com/recipes.json",
+        return this.http.put("your http api"),
             recipesState.recipes);
     })
 )
